@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ChatMates</title>
+    <link rel="stylesheet" href="static/style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="statoc/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/images/logo.png">
+</head>
+
+<body>
+    <header>
+        <img src="images/LOGO.png?rand=fe7f" class="logo" alt="logo">
+        <nav>
+            <ul class="nav__links">
+                <li><a class="li-nav-link" href="#">À propos de</a></li>
+                <li><a class="li-nav-link" href="#">Service</a></li>
+                <li><a class="li-nav-link" href="#">Accueil</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="#"><button>Contact</button></a>
+    </header>
+    <h1 id="ChatMates_h1">ChatMates</h1>
+    <form method="POST" action="/">
+        <!-- <label for="user_input">You:</label> -->
+        <input type="text" name="user_input" id="user_input" autofocus placeholder="Entre votre question">
+        <input type="submit" value="Send">
+    </form>
+    <div class="boot">
+        {% if bot_response %}
+        <p>{{ bot_response | safe }}</p>
+        {% endif %}
+    </div>
+
+    <script>
+        const heading = document.getElementById("ChatMates_h1");
+        const colors = ["#160e3d", "#db545a", "blue", "purple"]; // Liste des couleurs
+
+        let currentIndex = 0;
+
+        function changeColor() {
+            heading.style.color = colors[currentIndex];
+            currentIndex = (currentIndex + 1) % colors.length;
+        }
+
+        setInterval(changeColor, 3000); // Changer toutes les 3 secondes (3000 ms)
+
+    </script>
+
+</body>
+
+</html>

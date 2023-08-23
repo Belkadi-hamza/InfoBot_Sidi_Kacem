@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChatBot</title>
+  <style>
+    #container {
+      display: flex;
+    }
+
+    #sidebar {
+      width: 30%;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+
+    #messages {
+      width: 70%;
+      padding: 20px;
+    }
+
+    #messages .message {
+      margin-bottom: 10px;
+    }
+
+    #messages .question {
+      background-color: #e0e0e0;
+      padding: 10px;
+    }
+
+    #messages .answer {
+      background-color: #d0d0d0;
+      padding: 10px;
+      text-align: right;
+    }
+
+    #messages p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="sidebar">
+      <ul id="questionList">
+        <!-- قائمة الأسئلة -->
+      </ul>
+    </div>
+    <div id="messages">
+      <div id="currentQuestion" class="message question">
+        <p>السؤال الذي تم طرحه</p>
+      </div>
+      <div id="currentAnswer" class="message answer">
+        <p>الإجابة من الIA</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ستخزن الأسئلة والأجوبة هنا في هيئة مصفوفة
+    const conversationHistory = [
+      { question: "السؤال الأول", answer: "الإجابة الأولى" },
+      { question: "السؤال الثاني", answer: "الإجابة الثانية" }
+      // يمكنك إضافة المزيد هنا
+    ];
+
+    const questionList = document.getElementById("questionList");
+    const currentQuestion = document.getElementById("currentQuestion");
+    const currentAnswer = document.getElementById("currentAnswer");
+
+    // عرض الأسئلة والأجوبة في الجدول الجانبي
+    conversationHistory.forEach((entry, index) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = entry.question;
+      listItem.addEventListener("click", () => displayConversation(index));
+      questionList.appendChild(listItem);
+    });
+
+    // عرض السؤال والإجابة لمحادثة محددة
+    function displayConversation(index) {
+      currentQuestion.innerHTML = `<p>${conversationHistory[index].question}</p>`;
+      currentAnswer.innerHTML = `<p>${conversationHistory[index].answer}</p>`;
+    }
+
+    // عرض المحادثة الأخيرة بشكل افتراضي
+    displayConversation(conversationHistory.length - 1);
+  </script>
+</body>
+</html>
